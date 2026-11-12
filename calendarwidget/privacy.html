@@ -1,0 +1,58 @@
+Privacy Policy
+CalendarWidget
+Effective September 14, 2026
+Version 1.0
+Applies to Windows desktop app
+CalendarWidget is a desktop calendar widget for Windows that can optionally connect to your Google Calendar. This page explains exactly what the app does with your data — and, just as importantly, what it doesn't do.
+
+At a glance
+Your calendar data is stored only on your own PC — CalendarWidget has no server, and nothing is uploaded anywhere.
+Google access is optional, and limited to reading and writing your own calendar events — nothing else in your Google Account.
+No analytics, no advertising, no data sale, no sharing with third parties.
+You can disconnect Google access at any time, from inside the app or from your Google Account settings.
+01
+What CalendarWidget stores locally
+CalendarWidget keeps its data as plain files in your Windows user profile, inside the app's own local storage folder. None of this leaves your computer unless you choose to sync with Google.
+
+events.json
+Calendar events you create locally in the app.
+Never transmitted anywhere unless the event is also synced to Google, at your direction.
+settings.json
+Your app preferences — display mode, window position, colors, and similar options.
+Google token cache
+An OAuth access token issued to you by Google after you sign in, kept only so the app doesn't ask you to sign in every time.
+This is your token, not a password — see §3.
+02
+What happens when you connect Google Calendar
+Connecting Google Calendar is optional. If you choose to sign in, CalendarWidget requests a single, narrow Google API scope:
+
+https://www.googleapis.com/auth/calendar.events
+
+This scope lets the app read and write events on your own calendar — it does not grant access to your Gmail, Drive, contacts, or any other Google service, and it does not let the app see or manage other people's calendars.
+
+Events you view in CalendarWidget are fetched directly from the Google Calendar API to your device.
+Events you create or edit in the app are sent directly to your Google Calendar over Google's own API.
+No calendar content passes through, or is stored on, any server operated by CalendarWidget's developer.
+03
+Sign-in and your Google Account
+Sign-in uses Google's standard OAuth consent flow in your browser. CalendarWidget never sees or stores your Google password. Each person who runs the app signs in individually and receives their own access token — one user's sign-in never grants access to another user's calendar.
+
+You can revoke access at any time from Google Account → Security → Third-party access, or by signing out from within CalendarWidget itself.
+
+04
+What CalendarWidget does not do
+It does not run analytics, telemetry, or crash-reporting services.
+It does not include advertising or ad-tracking of any kind.
+It does not sell, rent, or share your data with any third party.
+It does not use your data to train any model.
+05
+How long your data is kept
+Local files remain on your PC for as long as CalendarWidget is installed. Uninstalling the app removes its local storage folder, including cached events, settings, and the Google token cache. Your actual Google Calendar events are unaffected by uninstalling — they continue to exist in your Google Account, governed by Google's own retention policies.
+
+06
+Changes to this policy
+If this policy changes, the "Effective" date at the top of this page will be updated. Material changes — such as new data collection — will be reflected here before they take effect.
+
+Questions about this policy or your data?
+saku00149@googlegroups.com
+CalendarWidget
