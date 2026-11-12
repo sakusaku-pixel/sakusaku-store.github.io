@@ -1,58 +1,425 @@
-Privacy Policy
-CalendarWidget
-Effective September 14, 2026
-Version 1.0
-Applies to Windows desktop app
-CalendarWidget is a desktop calendar widget for Windows that can optionally connect to your Google Calendar. This page explains exactly what the app does with your data — and, just as importantly, what it doesn't do.
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CalendarWidget Privacy Policy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f6;
+    --surface: #ffffff;
+    --surface-border: #e5e2da;
+    --text: #201f1c;
+    --text-muted: #6d6a63;
+    --text-faint: #9c988e;
+    --accent: #3a5a7c;
+    --accent-soft: #eaf0f5;
+    --rule: #e5e2da;
+    --code-bg: #f1efe9;
+  }
 
-At a glance
-Your calendar data is stored only on your own PC — CalendarWidget has no server, and nothing is uploaded anywhere.
-Google access is optional, and limited to reading and writing your own calendar events — nothing else in your Google Account.
-No analytics, no advertising, no data sale, no sharing with third parties.
-You can disconnect Google access at any time, from inside the app or from your Google Account settings.
-01
-What CalendarWidget stores locally
-CalendarWidget keeps its data as plain files in your Windows user profile, inside the app's own local storage folder. None of this leaves your computer unless you choose to sync with Google.
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17161a;
+      --surface: #1e1d22;
+      --surface-border: #322f38;
+      --text: #ece9e2;
+      --text-muted: #a7a39b;
+      --text-faint: #7a766f;
+      --accent: #8fb4d6;
+      --accent-soft: #24313c;
+      --rule: #322f38;
+      --code-bg: #24222a;
+    }
+  }
 
-events.json
-Calendar events you create locally in the app.
-Never transmitted anywhere unless the event is also synced to Google, at your direction.
-settings.json
-Your app preferences — display mode, window position, colors, and similar options.
-Google token cache
-An OAuth access token issued to you by Google after you sign in, kept only so the app doesn't ask you to sign in every time.
-This is your token, not a password — see §3.
-02
-What happens when you connect Google Calendar
-Connecting Google Calendar is optional. If you choose to sign in, CalendarWidget requests a single, narrow Google API scope:
+  :root[data-theme="dark"] {
+    --bg: #17161a;
+    --surface: #1e1d22;
+    --surface-border: #322f38;
+    --text: #ece9e2;
+    --text-muted: #a7a39b;
+    --text-faint: #7a766f;
+    --accent: #8fb4d6;
+    --accent-soft: #24313c;
+    --rule: #322f38;
+    --code-bg: #24222a;
+  }
 
-https://www.googleapis.com/auth/calendar.events
+  * { box-sizing: border-box; }
 
-This scope lets the app read and write events on your own calendar — it does not grant access to your Gmail, Drive, contacts, or any other Google service, and it does not let the app see or manage other people's calendars.
+  html, body { margin: 0; padding: 0; }
 
-Events you view in CalendarWidget are fetched directly from the Google Calendar API to your device.
-Events you create or edit in the app are sent directly to your Google Calendar over Google's own API.
-No calendar content passes through, or is stored on, any server operated by CalendarWidget's developer.
-03
-Sign-in and your Google Account
-Sign-in uses Google's standard OAuth consent flow in your browser. CalendarWidget never sees or stores your Google password. Each person who runs the app signs in individually and receives their own access token — one user's sign-in never grants access to another user's calendar.
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
 
-You can revoke access at any time from Google Account → Security → Third-party access, or by signing out from within CalendarWidget itself.
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 64px 24px 96px;
+  }
 
-04
-What CalendarWidget does not do
-It does not run analytics, telemetry, or crash-reporting services.
-It does not include advertising or ad-tracking of any kind.
-It does not sell, rent, or share your data with any third party.
-It does not use your data to train any model.
-05
-How long your data is kept
-Local files remain on your PC for as long as CalendarWidget is installed. Uninstalling the app removes its local storage folder, including cached events, settings, and the Google token cache. Your actual Google Calendar events are unaffected by uninstalling — they continue to exist in your Google Account, governed by Google's own retention policies.
+  header.doc-header {
+    margin-bottom: 48px;
+  }
 
-06
-Changes to this policy
-If this policy changes, the "Effective" date at the top of this page will be updated. Material changes — such as new data collection — will be reflected here before they take effect.
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
 
-Questions about this policy or your data?
-saku00149@googlegroups.com
-CalendarWidget
+  .eyebrow .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(32px, 5vw, 44px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+
+  .doc-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .doc-meta span b {
+    color: var(--text);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .lede {
+    margin-top: 22px;
+    font-size: 17px;
+    color: var(--text-muted);
+    max-width: 62ch;
+  }
+
+  .summary {
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: 14px;
+    padding: 26px 28px;
+    margin: 40px 0 52px;
+  }
+
+  .summary h2 {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 16px;
+    font-weight: 500;
+  }
+
+  .summary ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 13px;
+  }
+
+  .summary li {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 10px;
+    font-size: 14.5px;
+    color: var(--text);
+  }
+
+  .summary li svg {
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  section.clause {
+    padding: 34px 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  section.clause:first-of-type {
+    border-top: 1px solid var(--rule);
+  }
+
+  .clause-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .clause-num {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--text-faint);
+    font-variant-numeric: tabular-nums;
+    padding-top: 3px;
+  }
+
+  h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 500;
+    font-size: 22px;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .clause p, .clause li {
+    font-size: 15.5px;
+    color: var(--text-muted);
+    max-width: 64ch;
+  }
+
+  .clause p + p { margin-top: 12px; }
+
+  .clause ul {
+    margin: 12px 0 0;
+    padding-left: 0;
+    list-style: none;
+    display: grid;
+    gap: 9px;
+  }
+
+  .clause ul li {
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .clause ul li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 9px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.7;
+  }
+
+  code, .scope {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.88em;
+    background: var(--code-bg);
+    border: 1px solid var(--surface-border);
+    padding: 1px 7px;
+    border-radius: 5px;
+    color: var(--text);
+  }
+
+  .data-table {
+    margin-top: 16px;
+    border: 1px solid var(--surface-border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+
+  .data-row {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 16px;
+    padding: 14px 18px;
+  }
+
+  .data-row + .data-row {
+    border-top: 1px solid var(--rule);
+  }
+
+  .data-row .k {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
+    color: var(--accent);
+    padding-top: 2px;
+  }
+
+  .data-row .v {
+    font-size: 14.5px;
+    color: var(--text);
+  }
+
+  .data-row .v small {
+    display: block;
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-top: 3px;
+  }
+
+  footer.doc-footer {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  footer.doc-footer .contact {
+    font-size: 14.5px;
+    color: var(--text-muted);
+  }
+
+  footer.doc-footer a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+  }
+
+  footer.doc-footer .mark {
+    font-family: "Fraunces", Georgia, serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--text-faint);
+  }
+
+  @media (max-width: 560px) {
+    .page { padding: 44px 18px 72px; }
+    .data-row { grid-template-columns: 1fr; gap: 4px; }
+    .summary { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="doc-header">
+    <div class="eyebrow"><span class="dot"></span>Privacy Policy</div>
+    <h1>CalendarWidget</h1>
+    <div class="doc-meta">
+      <span>Effective <b>September 14, 2026</b></span>
+      <span>Version <b>1.0</b></span>
+      <span>Applies to <b>Windows desktop app</b></span>
+    </div>
+    <p class="lede">CalendarWidget is a desktop calendar widget for Windows that can optionally connect to your Google Calendar. This page explains exactly what the app does with your data — and, just as importantly, what it doesn't do.</p>
+  </header>
+
+  <div class="summary">
+    <h2>At a glance</h2>
+    <ul>
+      <li><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="var(--accent)" stroke-width="1.4"/><path d="M6 10.2l2.6 2.6L14.2 7" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Your calendar data is stored only on your own PC — CalendarWidget has no server, and nothing is uploaded anywhere.</li>
+      <li><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="var(--accent)" stroke-width="1.4"/><path d="M6 10.2l2.6 2.6L14.2 7" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Google access is optional, and limited to reading and writing your own calendar events — nothing else in your Google Account.</li>
+      <li><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="var(--accent)" stroke-width="1.4"/><path d="M6 10.2l2.6 2.6L14.2 7" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>No analytics, no advertising, no data sale, no sharing with third parties.</li>
+      <li><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="var(--accent)" stroke-width="1.4"/><path d="M6 10.2l2.6 2.6L14.2 7" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>You can disconnect Google access at any time, from inside the app or from your Google Account settings.</li>
+    </ul>
+  </div>
+
+  <section class="clause">
+    <div class="clause-head">
+      <span class="clause-num">01</span>
+      <h2>What CalendarWidget stores locally</h2>
+    </div>
+    <p>CalendarWidget keeps its data as plain files in your Windows user profile, inside the app's own local storage folder. None of this leaves your computer unless you choose to sync with Google.</p>
+    <div class="data-table">
+      <div class="data-row">
+        <div class="k">events.json</div>
+        <div class="v">Calendar events you create locally in the app.
+          <small>Never transmitted anywhere unless the event is also synced to Google, at your direction.</small>
+        </div>
+      </div>
+      <div class="data-row">
+        <div class="k">settings.json</div>
+        <div class="v">Your app preferences — display mode, window position, colors, and similar options.</div>
+      </div>
+      <div class="data-row">
+        <div class="k">Google token cache</div>
+        <div class="v">An OAuth access token issued to you by Google after you sign in, kept only so the app doesn't ask you to sign in every time.
+          <small>This is your token, not a password — see §3.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="clause">
+    <div class="clause-head">
+      <span class="clause-num">02</span>
+      <h2>What happens when you connect Google Calendar</h2>
+    </div>
+    <p>Connecting Google Calendar is optional. If you choose to sign in, CalendarWidget requests a single, narrow Google API scope:</p>
+    <p><code class="scope">https://www.googleapis.com/auth/calendar.events</code></p>
+    <p>This scope lets the app read and write events on your own calendar — it does not grant access to your Gmail, Drive, contacts, or any other Google service, and it does not let the app see or manage other people's calendars.</p>
+    <ul>
+      <li>Events you view in CalendarWidget are fetched directly from the Google Calendar API to your device.</li>
+      <li>Events you create or edit in the app are sent directly to your Google Calendar over Google's own API.</li>
+      <li>No calendar content passes through, or is stored on, any server operated by CalendarWidget's developer.</li>
+    </ul>
+  </section>
+
+  <section class="clause">
+    <div class="clause-head">
+      <span class="clause-num">03</span>
+      <h2>Sign-in and your Google Account</h2>
+    </div>
+    <p>Sign-in uses Google's standard OAuth consent flow in your browser. CalendarWidget never sees or stores your Google password. Each person who runs the app signs in individually and receives their own access token — one user's sign-in never grants access to another user's calendar.</p>
+    <p>You can revoke access at any time from <a href="https://myaccount.google.com/permissions" style="color:var(--accent)">Google Account → Security → Third-party access</a>, or by signing out from within CalendarWidget itself.</p>
+  </section>
+
+  <section class="clause">
+    <div class="clause-head">
+      <span class="clause-num">04</span>
+      <h2>What CalendarWidget does not do</h2>
+    </div>
+    <ul>
+      <li>It does not run analytics, telemetry, or crash-reporting services.</li>
+      <li>It does not include advertising or ad-tracking of any kind.</li>
+      <li>It does not sell, rent, or share your data with any third party.</li>
+      <li>It does not use your data to train any model.</li>
+    </ul>
+  </section>
+
+  <section class="clause">
+    <div class="clause-head">
+      <span class="clause-num">05</span>
+      <h2>How long your data is kept</h2>
+    </div>
+    <p>Local files remain on your PC for as long as CalendarWidget is installed. Uninstalling the app removes its local storage folder, including cached events, settings, and the Google token cache. Your actual Google Calendar events are unaffected by uninstalling — they continue to exist in your Google Account, governed by Google's own retention policies.</p>
+  </section>
+
+  <section class="clause">
+    <div class="clause-head">
+      <span class="clause-num">06</span>
+      <h2>Changes to this policy</h2>
+    </div>
+    <p>If this policy changes, the "Effective" date at the top of this page will be updated. Material changes — such as new data collection — will be reflected here before they take effect.</p>
+  </section>
+
+  <footer class="doc-footer">
+    <div class="contact">Questions about this policy or your data?<br><a href="mailto:saku00149@googlegroups.com">saku00149@googlegroups.com</a></div>
+    <div class="mark">CalendarWidget</div>
+  </footer>
+
+</div>
+</body>
+</html>
